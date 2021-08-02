@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.EmployeeMapper">
+    <!--这个里面写动态SQL、多表关联查询都可以胜任-->
+    <select id="findEmployee" resultType="com.example.demo.dao.Employee">
+        SELECT id,last_name,email,gender,age
+        FROM tbl_employee
+    </select>
+
+    <insert id="addEmployee" parameterType="com.example.demo.dao.Employee">
+        insert into tbl_employee(id,last_name,email,age)
+        values (#{id},#{lastName},#{email},#{age})
+    </insert>
+
+    <delete id="deleteEmployee" parameterType="long">
+        delete from tbl_employee where id=#{id}
+    </delete>
+
+    <update id="updateEmployee" parameterType="com.example.demo.dao.Employee">
+        update tbl_employee
+        set last_name=#{lastName},email=#{email},age=#{age}
+        where id=#{id}
+    </update>
+
+    <select id="queryEmployee" resultType="com.example.demo.dao.Employee">
+        SELECT id,last_name,email,gender,age
+        FROM tbl_employee
+        where id=#{id}
+    </select>
+
+
+</mapper>
